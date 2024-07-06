@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
 {
@@ -11,7 +12,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        return view("transaction.index");
     }
 
     /**
@@ -19,7 +20,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view("transaction.create");
     }
 
     /**
@@ -27,7 +28,20 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'amount' => 'required|numeric',
+            'description' => 'required',
+
+        ];
+        $validator=   Validator::make(
+                $request->all(),
+                $rules
+            );
+        if ($validator->fails()) {
+            return redirect()->route('transaction.create')->withInput()->withErrors($validator);
+        }
+
+
     }
 
     /**
