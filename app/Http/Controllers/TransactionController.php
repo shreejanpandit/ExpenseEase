@@ -14,9 +14,10 @@ class TransactionController extends Controller
     public function index()
     {
         // get all item using transaction model and send it for ui 
-        $transaction = Transaction::OrderBy('transaction_date','DESC')->get();
+        $transactions = Transaction::OrderBy('created_at','DESC')->get();
+        // $transactions = Transaction::OrderBy('transaction_date','ASC')->get();
 
-        return view("transaction.index", ['transaction'=>$transaction]);
+        return view("transaction.index", ['transactions'=>$transactions]);
     }
 
     /**
