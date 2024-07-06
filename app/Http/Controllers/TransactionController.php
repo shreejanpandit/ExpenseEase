@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +13,10 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view("transaction.index");
+        // get all item using transaction model and send it for ui 
+        $transaction = Transaction::OrderBy('transaction_date','DESC')->get();
+
+        return view("transaction.index", ['transaction'=>$transaction]);
     }
 
     /**
@@ -35,20 +39,24 @@ class TransactionController extends Controller
             'description' => 'required',
 
         ];
-        $validator=   Validator::make(
-                $request->all(),
-                $rules
-            );
-        
-            //check if validation pass
+        $validator =   Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        //check if validation pass
         if ($validator->fails()) {
             return redirect()->route('transaction.create')->withInput()->withErrors($validator);
         }
 
         //inserting data into database
-        
-
-
+        $trans = new Transaction();
+        $trans->amount = $request->amount;
+        $trans->description = $request->description;
+        $trans->type = $request->transc;
+        $trans->transaction_date = date("Y-m-d");
+        $trans->save();
+        return redirect()->route('transaction.index')->with('sucess', "Transaction added sucessfully");
     }
 
     /**
