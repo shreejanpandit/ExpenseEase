@@ -28,6 +28,8 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        // dump($request);
+        // rules for validation
         $rules = [
             'amount' => 'required|numeric',
             'description' => 'required',
@@ -37,9 +39,14 @@ class TransactionController extends Controller
                 $request->all(),
                 $rules
             );
+        
+            //check if validation pass
         if ($validator->fails()) {
             return redirect()->route('transaction.create')->withInput()->withErrors($validator);
         }
+
+        //inserting data into database
+        
 
 
     }

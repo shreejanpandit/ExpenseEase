@@ -58,9 +58,9 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h5">Type</label>
-                                <input class=" mx-4" type="radio" name="trans" id="expense" checked="checked">
+                                <input class=" mx-4" type="radio" name="trans" value="expense" checked="checked">
                                 <label for="">Expense</label>
-                                <input class="mx-4" type="radio" name="trans" id="income">
+                                <input class="mx-4" type="radio" name="trans" value="income">
                                 <label for="">Income</label>
                             </div>
                             <div class="d-grid">
