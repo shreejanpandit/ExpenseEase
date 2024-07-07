@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -17,7 +18,12 @@ class TransactionController extends Controller
         $transactions = Transaction::OrderBy('created_at', 'DESC')->get();
         // $transactions = Transaction::OrderBy('transaction_date','ASC')->get();
 
-        return view("transaction.index", ['transactions' => $transactions]);
+        // Get the logged-in user
+        $user = Auth::user();
+
+        // Pass transactions and user to the view
+        return view('transaction.index', ['transactions' => $transactions, 'user' => $user]);
+  
     }
 
     /**

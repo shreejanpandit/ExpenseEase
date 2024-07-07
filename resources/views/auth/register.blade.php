@@ -26,6 +26,12 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-md-5">
+            @if(Session::has('success'))
+                <div class="col-md-10 mt-4">
+                    <div class="alert alert-success">
+                        {{Session::get('success')}}
+                    </div>
+                    @endif
             @if(Session::has('error'))
                 <div class="col-md-10 mt-4">
                     <div class="alert alert-success">

@@ -48,15 +48,26 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light px-4 " style="background-color: #e3f2fd; ">
-    <a class="navbar-brand navbar-brand-custom ml-2" href="{{route('transaction.index')}}">
-      <span class="easy">Easy</span><span class="expense">Expense</span>
+<nav class="navbar navbar-light px-4" style="background-color: #e3f2fd;">
+    <a class="navbar-brand navbar-brand-custom ml-2" href="{{ route('transaction.index') }}">
+        <span class="easy">Easy</span><span class="expense">Expense</span>
     </a>
-    <a class="navbar-brand tran_color  ml-2 btn btn-success" href="{{route('transaction.create')}}">
-      <i class="fa fa-plus"></i> Add Transaction
-    </a>
+    <div class="navbar-brand navbar-brand-custom ml-2">
+        <b>Welcome</b> {{ $user->name }}
+    </div>
+    <div class="ml-auto d-flex align-items-center">
+        <a class="tran_color mr-2 btn btn-success" href="{{ route('transaction.create') }}">
+            <i class="fa fa-plus"></i> Add Transaction
+        </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <form action="{{ route('logout') }}" method="POST" class="ml-2 mb-0">
+            @csrf
+            <button type="submit" class="tran_color btn btn-danger">
+                <i class="fa fa-sign-out"></i> Logout
+            </button>
+        </form>
+    </div>
+</nav>
 
-  </nav>
 
   <div class="container">
     <div class="row d-flex justify-content-center">

@@ -32,6 +32,12 @@
                         {{Session::get('success')}}
                     </div>
                     @endif
+                    @if(Session::has('error'))
+                <div class="col-md-10 mt-4">
+                    <div class="alert alert-success">
+                        {{Session::get('error')}}
+                    </div>
+                    @endif
                     <div class="card border-0 shadow-lg my-4">
                         <div class="card-header">
                             <div class="navbar-brand-custom ml-2" href="">
@@ -41,24 +47,20 @@
                         <form action="{{route('auth.login.post')}}" method="post">
                             @csrf
                             <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="" class="form-label h5">Email</label>
-                                    <input type="text" placeholder="something@mail.com" class="form-control" name="email" id="email" required autofocus>
-                                    @if($errors->has('email'))
-                                    <span class="text-danger">
-                                        {{$$errors->first('email')}}
-                                    </span>
-                                    @endif
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label h5">Password</label>
-                                    <input type="password" placeholder="Password" name="password" id="password" class="form-control" required>
-                                    @if($errors->has('password'))
-                                    <span class="text-danger">
-                                        {{$$errors->first('password')}}
-                                    </span>
-                                    @endif
-                                </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Email</label>
+                                <input type="text" placeholder="something@mail.com" value="{{old('email')}}" class=" @error('email') is-invalid @enderror form-control form-control-lg" name="email" id="email">
+                                @error('email')
+                                <p class="invalid-feedback">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Password</label>
+                                <input type="password" value="{{old('password')}}" class=" @error('password') is-invalid @enderror form-control form-control-lg" placeholder="Password" name="password" id="password" >
+                                @error('password')
+                                <p class="invalid-feedback">{{$message}}</p>
+                                @enderror
+                            </div>
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </div>
