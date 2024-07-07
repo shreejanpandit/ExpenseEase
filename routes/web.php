@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
 
@@ -16,3 +17,5 @@ Route::controller(TransactionController::class)->group(function () {
     Route::put('/transactions/{transaction}', 'update')->name('transaction.update');
     Route::delete('/transactions/{transaction}', 'destroy')->name('transaction.delete');
 });
+
+Route::get('/login',[AuthController::class, 'login']);
