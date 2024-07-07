@@ -7,10 +7,12 @@ use App\Http\Controllers\TransactionController;
 //     return view('welcome');
 // });
 
-Route::get('/', [TransactionController::class,'index'])->name('transaction.index');
-Route::get('/transactions/create', [TransactionController::class,'create'])->name('transaction.create');
-Route::post('/transactions', [TransactionController::class,'store'])->name('transaction.store');
-Route::get('/transactions/{transaction}/edit', [TransactionController::class,'edit'])->name('transaction.edit');
-Route::put('/transactions/{transaction}', [TransactionController::class,'update'])->name('transaction.update');
-Route::delete('/transactions/{transaction}', [TransactionController::class,'destroy'])->name('transaction.delete');
+Route::controller(TransactionController::class)->group(function () {
 
+    Route::get('/', 'index')->name('transaction.index');
+    Route::get('/transactions/create', 'create')->name('transaction.create');
+    Route::post('/transactions', 'store')->name('transaction.store');
+    Route::get('/transactions/{transaction}/edit', 'edit')->name('transaction.edit');
+    Route::put('/transactions/{transaction}', 'update')->name('transaction.update');
+    Route::delete('/transactions/{transaction}', 'destroy')->name('transaction.delete');
+});
