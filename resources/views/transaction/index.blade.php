@@ -22,20 +22,27 @@
     .tran_color {
       color: whitesmoke;
     }
+
     table {
-        width: 100%;
-        border-collapse: collapse;
+      width: 100%;
+      border-collapse: collapse;
     }
-    table th, table td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 2px solid whitesmoke;
+
+    table th,
+    table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 2px solid whitesmoke;
     }
+
     .softred {
-        background-color: #f8c6c6; /* lighter red */
+      background-color: #f8c6c6;
+      /* lighter red */
     }
+
     .softgreen {
-        background-color: #c6f8c6; /* lighter green */
+      background-color: #c6f8c6;
+      /* lighter green */
     }
   </style>
 </head>
@@ -67,13 +74,13 @@
           </div>
 
           <div class="card-body">
-          @if($transactions->isEmpty())
-          <div class="alert alert-success">
-          Please add your data to view your transaction
-        </div>
-          @endif
+            @if($transactions->isEmpty())
+            <div class="alert alert-success">
+              Please add your data to view your transaction
+            </div>
+            @endif
             <table>
-              <tr >
+              <tr>
                 <th>S.N</th>
                 <th>Amount</th>
                 <th>Description</th>
@@ -81,26 +88,26 @@
                 <th>Transaction Date</th>
                 <th>Action</th>
               </tr>
-              
+
               @if($transactions->isNotEmpty())
               @php $i = 1; @endphp
               @foreach( $transactions as $transaction)
               @php
-                    $rowClass = $transaction->type == 'expense' ? 'softred' : ($transaction->type == 'income' ? 'softgreen' : '');
-                @endphp
-                <tr class="{{ $rowClass }}">
+              $rowClass = $transaction->type == 'expense' ? 'softred' : ($transaction->type == 'income' ? 'softgreen' : '');
+              @endphp
+              <tr class="{{ $rowClass }}">
                 <td>{{$i++}}</td>
                 <td>{{ $transaction->amount}}</td>
                 <td>{{ $transaction->description}}</td>
                 <td>{{ $transaction->type}}</td>
                 <td>{{ $transaction->transaction_date}}</td>
                 <td>
-                <a href="{{route('transaction.edit',$transaction->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-                                    <form action="{{route('transaction.delete',$transaction->id)}}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this transaction?');"><i class="fa fa-trash"></i></button>
-                                    </form>
+                  <a href="{{route('transaction.edit',$transaction->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                  <form action="{{route('transaction.delete',$transaction->id)}}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this transaction?');"><i class="fa fa-trash"></i></button>
+                  </form>
                 </td>
               </tr>
               @endforeach

@@ -49,7 +49,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h5">Description"</label>
-                                <textarea name="description"  cols="30" rows="5" class=" @error('description') is-invalid @enderror form-control" placeholder="Enter transaction details">{{old('description',$transaction->description)}}</textarea>
+                                <textarea name="description" cols="30" rows="5" class=" @error('description') is-invalid @enderror form-control" placeholder="Enter transaction details">{{old('description',$transaction->description)}}</textarea>
                                 @error('description')
                                 <p class="invalid-feedback">{{$message}}</p>
                                 @enderror
