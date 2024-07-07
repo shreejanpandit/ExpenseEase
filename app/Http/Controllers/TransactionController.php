@@ -84,7 +84,29 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $trans = Transaction::findOrFail($id);
+
+        $rules = [
+            'amount' => 'required|numeric',
+            'description' => 'required',
+
+        ];
+        $validator =   Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        //check if validation pass
+        if ($validator->fails()) {
+            return redirect()->route('transaction.edit',$id)->withInput()->withErrors($validator);
+        }
+
+        //updating data into database
+        $trans->amount = $request->amount;
+        $trans->description = $request->description;
+        $trans->type = $request->transc;
+        $trans->save();
+        return redirect()->route('transaction.index')->with('sucess', "Transaction updated sucessfully");
     }
 
     /**

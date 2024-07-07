@@ -36,7 +36,8 @@
                     <div class="card-header">
                         <h3>Update your transaction details</h3>
                     </div>
-                    <form action="{{route('transaction.update')}}" method="post">
+                    <form action="{{route('transaction.update',$transaction->id)}}" method="post">
+                        @method('put')
                         @csrf
                         <div class="card-body">
                             <div class="mb-3">
@@ -61,7 +62,7 @@
                                 <label for="">Income</label>
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-primary">Submit</button>
+                                <button class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </form>
