@@ -10,3 +10,6 @@ use App\Http\Controllers\TransactionController;
 Route::get('/', [TransactionController::class,'index'])->name('transaction.index');
 Route::get('/transactions/create', [TransactionController::class,'create'])->name('transaction.create');
 Route::post('/transactions', [TransactionController::class,'store'])->name('transaction.store');
+Route::get('/transactions/{transaction}/edit', [TransactionController::class,'edit'])->name('transaction.edit');
+Route::put('/transactions/{transaction}', [TransactionController::class,'update'])->name('transaction.update');
+

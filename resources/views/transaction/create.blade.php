@@ -48,7 +48,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h5">Description</label>
-                                <textarea name="description" value="{{old('description')}}" cols="30" rows="5" class=" @error('description') is-invalid @enderror form-control" placeholder="Enter transaction details"></textarea>
+                                <textarea name="description"  cols="30" rows="5" class=" @error('description') is-invalid @enderror form-control" placeholder="Enter transaction details">{{old('description')}}</textarea>
                                 @error('description')
                                 <p class="invalid-feedback">{{$message}}</p>
                                 @enderror
@@ -57,7 +57,7 @@
                                 <label for="" class="form-label h5">Type</label>
                                 <input class=" mx-4" type="radio" name="transc" value="expense" checked="checked">
                                 <label for="">Expense</label>
-                                <input class="mx-4" type="radio" name="transc" value="income">
+                                <input class="mx-4" type="radio" name="transc" value="income" {{ old('transc') == 'income' ? 'checked' : '' }}>
                                 <label for="">Income</label>
                             </div>
                             <div class="d-grid">
