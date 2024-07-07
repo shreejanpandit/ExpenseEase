@@ -76,7 +76,7 @@ class TransactionController extends Controller
         // echo($id);
         $transaction = Transaction::findOrFail($id);
         // dump($transaction);
-        return view("transaction.edit",['transaction'=>$transaction]);
+        return view("transaction.edit", ['transaction' => $transaction]);
     }
 
     /**
@@ -98,7 +98,7 @@ class TransactionController extends Controller
 
         //check if validation pass
         if ($validator->fails()) {
-            return redirect()->route('transaction.edit',$id)->withInput()->withErrors($validator);
+            return redirect()->route('transaction.edit', $id)->withInput()->withErrors($validator);
         }
 
         //updating data into database
@@ -114,6 +114,9 @@ class TransactionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $trans = Transaction::findOrFail($id);
+        $trans->delete();
+        return redirect()->route('transaction.index')->with('sucess', "Transaction deleted sucessfully");
+
     }
 }

@@ -12,4 +12,5 @@ Route::get('/transactions/create', [TransactionController::class,'create'])->nam
 Route::post('/transactions', [TransactionController::class,'store'])->name('transaction.store');
 Route::get('/transactions/{transaction}/edit', [TransactionController::class,'edit'])->name('transaction.edit');
 Route::put('/transactions/{transaction}', [TransactionController::class,'update'])->name('transaction.update');
+Route::delete('/transactions/{transaction}', [TransactionController::class,'destroy'])->name('transaction.delete');
 

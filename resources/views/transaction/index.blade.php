@@ -96,7 +96,7 @@
                 <td>{{ $transaction->transaction_date}}</td>
                 <td>
                 <a href="{{route('transaction.edit',$transaction->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-                                    <form action="#" method="POST" style="display:inline;">
+                                    <form action="{{route('transaction.delete',$transaction->id)}}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this transaction?');"><i class="fa fa-trash"></i></button>
