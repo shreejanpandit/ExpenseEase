@@ -29,15 +29,13 @@ class AuthController extends Controller
         $rules
     );
 
-    //check if validation pass
-    if ($validator->fails()) {
-        return redirect()->route('login')->withInput()->withErrors($validator);
-    }
 
     $credentials = $request->only("email","password");
     if (Auth::attempt($credentials)) {
         return redirect()->intended(route("transaction.index"));
     }
+
+    return redirect()->route('login')->with('error', 'Invalid credentials')->withInput()->withErrors($validator);
 
    }
 

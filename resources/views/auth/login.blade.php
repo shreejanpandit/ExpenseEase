@@ -34,7 +34,7 @@
                     @endif
                     @if(Session::has('error'))
                 <div class="col-md-10 mt-4">
-                    <div class="alert alert-success">
+                    <div class="alert alert-danger">
                         {{Session::get('error')}}
                     </div>
                     @endif
@@ -56,7 +56,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h5">Password</label>
-                                <input type="password" value="{{old('password')}}" class=" @error('password') is-invalid @enderror form-control form-control-lg" placeholder="Password" name="password" id="password" >
+                                <input type="password" class=" @error('password') is-invalid @enderror form-control form-control-lg" placeholder="Password" name="password" id="password" >
                                 @error('password')
                                 <p class="invalid-feedback">{{$message}}</p>
                                 @enderror
