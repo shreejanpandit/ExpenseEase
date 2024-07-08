@@ -48,25 +48,25 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light px-4" style="background-color: #e3f2fd;">
+  <nav class="navbar navbar-light px-4" style="background-color: #e3f2fd;">
     <a class="navbar-brand navbar-brand-custom ml-2" href="{{ route('transaction.index') }}">
-        <span class="easy">Easy</span><span class="expense">Expense</span>
+      <span class="easy">Easy</span><span class="expense">Expense</span>
     </a>
     <div class="navbar-brand navbar-brand-custom ml-2">
-        <b>Welcome</b> {{ $user->name }}
+      <b>Welcome</b> {{ $user->name }}
     </div>
     <div class="ml-auto d-flex align-items-center">
-        <a class="tran_color mr-2 btn btn-success" href="{{ route('transaction.create') }}">
-            <i class="fa fa-plus"></i> Add Transaction
-        </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <form action="{{ route('logout') }}" method="POST" class="ml-2 mb-0">
-            @csrf
-            <button type="submit" class="tran_color btn btn-danger">
-                <i class="fa fa-sign-out"></i> Logout
-            </button>
-        </form>
+      <a class="tran_color mr-2 btn btn-success" href="{{ route('transaction.create') }}">
+        <i class="fa fa-plus"></i> Add Transaction
+      </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <form action="{{ route('logout') }}" method="POST" class="ml-2 mb-0">
+        @csrf
+        <button type="submit" class="tran_color btn btn-danger">
+          <i class="fa fa-sign-out"></i> Logout
+        </button>
+      </form>
     </div>
-</nav>
+  </nav>
 
 
   <div class="container">
@@ -125,6 +125,11 @@
               @endif
 
             </table>
+
+            <div class="mt-3 d-flex justify-content-end">
+              {{ $transactions->links() }}
+            </div>
+
           </div>
 
 

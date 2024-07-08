@@ -23,7 +23,7 @@ class TransactionController extends Controller
         // Get only the transactions belonging to the authenticated user, ordered by created_at DESC
         $transactions = Transaction::where('user_id', $user->id)
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(5);
 
 
         // Pass transactions and user to the view
