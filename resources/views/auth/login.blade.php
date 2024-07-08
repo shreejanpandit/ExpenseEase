@@ -42,6 +42,7 @@
                         <div class="card-header">
                             <div class="navbar-brand-custom ml-2" href="">
                                 <span class="easy">Easy</span><span class="expense">Expense</span> - Login
+                               
                             </div>
                         </div>
                         <form action="{{route('auth.login.post')}}" method="post">
@@ -64,6 +65,10 @@
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </div>
+                                
+                            </div>
+                            <div class="mb-3 mx-3">
+                                Don't have and account ?  <a href="{{route('auth.register')}}"> Register</a>
                             </div>
                         </form>
                     </div>

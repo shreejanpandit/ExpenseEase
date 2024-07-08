@@ -80,6 +80,9 @@
                                 <button type="submit" class="btn btn-primary">Register</button>
                             </div>
                         </div>
+                        <div class="mb-3 mx-3">
+                                Already have an account ?  <a href="{{route('login')}}"> Login</a>
+                            </div>
                     </form>
                 </div>
             </div>
