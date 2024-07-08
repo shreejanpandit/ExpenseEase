@@ -9,18 +9,31 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->string('description')->nullable();
-            $table->decimal('amount', 8, 2);
-            $table->enum('type', ['income', 'expense']);
-            $table->date('transaction_date');
-            $table->timestamps();
-        });
-    }
+    // public function up(): void
+    // {
+    //     Schema::create('transactions', function (Blueprint $table) {
+    //         $table->id();
+    //         $table->string('description')->nullable();
+    //         $table->decimal('amount', 8, 2);
+    //         $table->enum('type', ['income', 'expense']);
+    //         $table->date('transaction_date');
+    //         $table->timestamps();
+    //     });
+    // }
 
+    public function up()
+{
+    Schema::create('transactions', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('user_id');
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        $table->decimal('amount', 8, 2);
+        $table->string('description');
+        $table->enum('type', ['income', 'expense']);
+        $table->date('transaction_date');
+        $table->timestamps();
+    });
+}
     /**
      * Reverse the migrations.
      */
