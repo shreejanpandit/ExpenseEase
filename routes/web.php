@@ -22,10 +22,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/login',[AuthController::class, 'login'])->name('login');
-Route::post('/login',[AuthController::class, 'loginPost'])->name('auth.login.post');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('auth.login.post');
 
-Route::get('/register',[AuthController::class, 'register'])->name('auth.register');
-Route::post('/register',[AuthController::class, 'registerPost'])->name('auth.register.post');
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('auth.register.post');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
