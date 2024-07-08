@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\Facades\Auth;
+use App\Models\Transaction;
+use App\Http\Controllers\Controller;
 
 class TransactionController extends Controller
 {
@@ -14,17 +17,19 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        // get all item using transaction model and send it for ui 
-        $transactions = Transaction::OrderBy('created_at', 'DESC')->get();
-        // $transactions = Transaction::OrderBy('transaction_date','ASC')->get();
-
         // Get the logged-in user
         $user = Auth::user();
 
+        // Get only the transactions belonging to the authenticated user, ordered by created_at DESC
+        $transactions = Transaction::where('user_id', $user->id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+
         // Pass transactions and user to the view
         return view('transaction.index', ['transactions' => $transactions, 'user' => $user]);
-  
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -62,6 +67,7 @@ class TransactionController extends Controller
         $trans->description = $request->description;
         $trans->type = $request->transc;
         $trans->transaction_date = date("Y-m-d");
+        $trans->user_id = Auth::id();
         $trans->save();
         return redirect()->route('transaction.index')->with('sucess', "Transaction added sucessfully");
     }
